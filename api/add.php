@@ -29,7 +29,7 @@ switch ($_POST['table']) {
     break;
 
     case 'admin':
-        if($_POST['pw'] == $_POST['pwch']){
+        if($_POST['pw'] == $_POST['pwCh']){
             $data['acc'] = $_POST['acc'];
             $data['pw'] = $_POST['pw'];
         }

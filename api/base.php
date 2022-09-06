@@ -26,7 +26,7 @@ class DB
                     $tmp[] = " `$key` = '$value' ";
                 }
 
-                $sql = " WHERE " . join('AND',$tmp);
+                $sql .= " WHERE " . join('AND',$tmp);
 
             }else{
                 $sql .= $arg[0];
@@ -50,7 +50,7 @@ class DB
                     $tmp[] = " `$key` = '$value' ";
                 }
 
-                $sql = " WHERE " . join('AND',$tmp);
+                $sql .= " WHERE " . join('AND',$tmp);
 
             }else{
                 $sql .= " WHERE `id` = '$id' ";
@@ -70,7 +70,7 @@ class DB
                     $tmp[] = " `$key` = '$value' ";
                 }
 
-                $sql = " WHERE " . join('AND',$tmp);
+                $sql .= " WHERE " . join('AND',$tmp);
 
             }else{
                 $sql .= " WHERE `id` = '$id' ";
@@ -113,7 +113,7 @@ class DB
                     $tmp[] = " `$key` = '$value' ";
                 }
 
-                $sql = " WHERE " . join('AND',$tmp);
+                $sql .= " WHERE " . join('AND',$tmp);
 
             }else{
                 $sql .= $arg[0];
