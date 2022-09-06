@@ -1,5 +1,6 @@
 ﻿<?php
 $do = ($_GET['do'])??'title';
+include('./api/base.php');
 ?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -16,20 +17,25 @@ $do = ($_GET['do'])??'title';
 </head>
 
 <body>
+    <div id="cover" style="display:none; ">
+        <div id="coverr">
+            <a style="position:absolute; right:3px; top:4px; cursor:pointer; z-index:9999;" onclick="cl('#cover')">X</a>
+            <div id="cvr" style="position:absolute; width:99%; height:100%; margin:auto; z-index:9898;"></div>
+        </div>
+    </div>
 
     <div id="main">
-		<?php
+        <?php
 			include('./front/header.php');
 		?>
 
         <div id="ms">
 
             <div id="lf" style="float:left;">
-                <div id="menuput" class="dbor">
+                <div id="menuput" class="dbor cent">
                     <!--主選單放此-->
                     <span class="t botli">後台管理選單</span>
-                    <a style="color:#000; font-size:13px; text-decoration:none;"
-                        href="?do=title">
+                    <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=title">
                         <div class="mainmu">
                             網站標題管理 </div>
                     </a>
@@ -70,8 +76,8 @@ $do = ($_GET['do'])??'title';
                 </div>
                 <div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
                     <span class="t">進站總人數 :
-                        1 
-					</span>
+                        1
+                    </span>
                 </div>
             </div>
             <div class="di"
@@ -89,7 +95,7 @@ $do = ($_GET['do'])??'title';
                     </tbody>
                 </table>
 
-				<?php
+                <?php
 				if(file_exists('./back/'.$do.'.php')){
 					include('./back/'.$do.'.php');
 				}else{
@@ -102,26 +108,11 @@ $do = ($_GET['do'])??'title';
                 style="position: absolute; width: 350px; min-height: 100px; word-break:break-all; text-align:justify;  background-color: rgb(255, 255, 204); top: 50px; left: 400px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;">
             </div>
 
-            <script>
-            $(".sswww").hover(
-                function() {
-                    $("#alt").html("" + $(this).children(".all").html() + "").css({
-                        "top": $(this).offset().top - 50
-                    })
-                    $("#alt").show()
-                }
-            )
-            $(".sswww").mouseout(
-                function() {
-                    $("#alt").hide()
-                }
-            )
-            </script>
         </div>
 
         <div style="clear:both;"></div>
 
-		<?php
+        <?php
 		include('./front/footer.php');
 		?>
     </div>

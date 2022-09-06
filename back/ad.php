@@ -4,11 +4,9 @@
         <table width="100%" class="cent">
             <tbody>
                 <tr class="yel">
-                    <td width="45%"><?= $STR->text[0] ?></td>
-                    <td width="23%"><?= $STR->text[1]  ?></td>
-                    <td width="7%">顯示</td>
-                    <td width="7%">刪除</td>
-                    <td></td>
+                    <td width="80%"><?= $STR->text[0] ?></td>
+                    <td width="10%">顯示</td>
+                    <td width="10%">刪除</td>
                 </tr>
                 <?php
                 $DB = new DB($_GET['do']);
@@ -17,20 +15,13 @@
                 ?>
                 <tr>
                     <td>
-                        <img src="./img/<?=$row['img']?>" alt="" style="width: 300px; height:30px">
+                        <input type="text" name="text[]" id="text" value="<?=$row['text']?>" style="width: 100%;">
                     </td>
                     <td>
-                        <input type="text" name="text[]" id="text" value="<?=$row['text']?>">
-                    </td>
-                    <td>
-                        <input type="radio" name="sh" id="sh" value="<?=$row['id']?>" <?=($row['sh'] == 1)?'checked':''?>>
+                        <input type="checkbox" name="sh[]" id="sh" value="<?=$row['id']?>" <?=($row['sh'] == 1)?'checked':''?>>
                     </td>
                     <td>
                         <input type="checkbox" name="del[]" id="del" value="<?=$row['id']?>">
-                    </td>
-                    <td>
-                    <input type="button" onclick="op('#cover','#cvr','./modal/updateImg.php?do=<?=$do?>&id=<?=$row['id']?>')"
-                            value="<?= $STR->updateBtn?>">
                     </td>
                     <input type="hidden" name="id[]" value="<?=$row['id']?>">
                 </tr>

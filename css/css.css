@@ -212,3 +212,12 @@ input:focus,button:focus
 .j-c {
 	justify-content: center;
 }
+
+.page a {
+	text-decoration: none;
+	color: #0CF;
+}
+
+.nowPage {
+	font-size: 1.5rem;
+}
