@@ -11,7 +11,7 @@
                     <td></td>
                 </tr>
                 <?php
-                $DB = new DB($_GET['do']);
+                $DB = new DB($do);
                 $rows = $DB->all();
                 foreach ($rows as $key => $row) {
                 ?>
@@ -49,7 +49,7 @@
                             value="<?= $STR->addBtn?>">
                     </td>
                     <td class="cent">
-                         <input type="hidden" name="table" value="<?=$_GET['do']?>">
+                         <input type="hidden" name="table" value="<?=$do?>">
                         <input type="submit" value="修改確定">
                         <input type="reset" value="重置">
                     </td>

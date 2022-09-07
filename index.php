@@ -32,9 +32,39 @@ $do = ($_GET['do'])??'main';
         <div id="ms">
 
             <div id="lf" style="float:left;">
-                <div id="menuput" class="dbor">
+                <div id="menuput" class="dbor cent">
                     <!--主選單放此-->
                     <span class="t botli">主選單區</span>
+                    <?php
+                    $menus = $Menu->all(['parent'=>0,'sh'=>1]);
+                    foreach ($menus as $key => $menu) {
+                    ?>
+                    <div class="menu_out p-r cup">
+                        <div class="mainmu">
+                        <a style="color:#000; font-size:13px; text-decoration:none;" href="<?=$menu['href']?>">
+                            <?=$menu['text']?>
+                        </a>
+                    </div>
+
+                    <div class="mw p-a cup">
+                        <?php
+                        $menuChilds = $Menu->all(['parent'=>$menu['id']]);
+                        foreach ($menuChilds as $key => $menuChild) {
+                        ?>
+                            <a style="color:#000; font-size:13px; text-decoration:none;" href="<?=$menuChild['href']?>">
+                                <div class="mainmu2">
+                                    <?=$menuChild['text']?>
+                                </div>
+                            </a>
+                            <?php
+                        }
+                        ?>
+                    </div>
+
+                    </div>
+                    <?php
+                    }
+                    ?>
                 </div>
 
                 <div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
@@ -63,25 +93,6 @@ $do = ($_GET['do'])??'main';
 				?>
             </div>
 
-            <div id="alt"
-                style="position: absolute; width: 350px; min-height: 100px; word-break:break-all; text-align:justify;  background-color: rgb(255, 255, 204); top: 50px; left: 400px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;">
-            </div>
-
-            <script>
-            $(".sswww").hover(
-                function() {
-                    $("#alt").html("" + $(this).children(".all").html() + "").css({
-                        "top": $(this).offset().top - 50
-                    })
-                    $("#alt").show()
-                }
-            )
-            $(".sswww").mouseout(
-                function() {
-                    $("#alt").hide()
-                }
-            )
-            </script>
             <div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
                 <!--右邊-->
                 <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;"
@@ -118,6 +129,32 @@ $do = ($_GET['do'])??'main';
 		?>
     </div>
 
+
+    <script>
+    $(document).ready(function(e) {
+        $(".mainmu").mouseover(
+            function() {
+                $(this).next(".mw").show()
+            }
+        )
+        $(".mainmu").mouseout(
+            function() {
+                $(this).next(".mw").hide()
+            }
+        )
+
+        $(".mw").mouseover(
+            function() {
+                $(this).show()
+            }
+        )
+        $(".mw").mouseout(
+            function() {
+                $(this).hide()
+            }
+        )
+    });
+    </script>
 </body>
 
 </html>

@@ -221,3 +221,23 @@ input:focus,button:focus
 .nowPage {
 	font-size: 1.5rem;
 }
+
+.p-r {
+	position: relative;
+}
+
+.p-a {
+	position: absolute;
+}
+
+.mw {
+	display: none;
+	width: 100%;
+	right: -150px;
+	z-index: 10;
+	top: 10px;
+}
+
+.cup {
+	cursor: pointer;
+}
