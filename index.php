@@ -41,13 +41,13 @@ $do = ($_GET['do'])??'main';
                     ?>
                     <div class="menu_out p-r cup">
                         <div class="mainmu">
-                        <a style="color:#000; font-size:13px; text-decoration:none;" href="<?=$menu['href']?>">
-                            <?=$menu['text']?>
-                        </a>
-                    </div>
+                            <a style="color:#000; font-size:13px; text-decoration:none;" href="<?=$menu['href']?>">
+                                <?=$menu['text']?>
+                            </a>
+                        </div>
 
-                    <div class="mw p-a cup">
-                        <?php
+                        <div class="mw p-a cup">
+                            <?php
                         $menuChilds = $Menu->all(['parent'=>$menu['id']]);
                         foreach ($menuChilds as $key => $menuChild) {
                         ?>
@@ -59,7 +59,7 @@ $do = ($_GET['do'])??'main';
                             <?php
                         }
                         ?>
-                    </div>
+                        </div>
 
                     </div>
                     <?php
@@ -95,20 +95,59 @@ $do = ($_GET['do'])??'main';
 
             <div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
                 <!--右邊-->
+                <?php
+                if(isset($_SESSION['admin'])){
+                ?>
+                <button onclick="location.href='./back.php'"
+                    style="width:99%; margin-right:2px; height:50px;">
+                    後台管理
+                </button>
+                <?php
+                }else{
+                ?>
                 <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;"
-                    onclick="lo('?do=login')">管理登入</button>
+                    onclick="lo('?do=login')">
+                    管理登入
+                </button>
+                <?php
+                }
+                ?>
+
+
                 <div style="width:89%; height:480px;" class="dbor">
                     <span class="t botli">校園映象區</span>
+
+                    <br>
+                    <div class="cent">
+                        <img src="./icon/up.jpg" alt="" onclick="pp(1)">
+                    </div>
+                    <br>
+                    <?php
+                        $images = $Image->all(['sh'=>1]);
+                        foreach ($images as $key => $image) {
+                            ?>
+                    <div class="im cent " id="ssaa<?=$key?>">
+                        <img src="./img/<?=$image['img']?>" alt="" style="width: 150px;height:103px">
+                    </div>
+                    <?php
+                        }
+                        ?>
+                    <br>
+                    <div class="cent">
+                        <img src="./icon/dn.jpg" alt="" onclick="pp(2)">
+                    </div>
+
+
                     <script>
                     var nowpage = 0,
-                        num = 0;
+                        num = <?=count($images);?>;
 
                     function pp(x) {
                         var s, t;
                         if (x == 1 && nowpage - 1 >= 0) {
                             nowpage--;
                         }
-                        if (x == 2 && (nowpage + 1) * 3 <= num * 1 + 3) {
+                        if (x == 2 && nowpage + 3 < num) {
                             nowpage++;
                         }
                         $(".im").hide()

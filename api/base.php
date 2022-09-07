@@ -238,6 +238,13 @@ function dd($array)
     echo "</pre>";
 }
 
+function alert($str)
+{
+    echo "<script>";
+    echo "alert('$str')";
+    echo "</script>";
+}
+
 function to($url)
 {
     header("location:$url");
@@ -257,4 +264,12 @@ $Bottom = new DB('bottom');
 $News = new DB('news');
 $Admin = new DB('admin');
 $Menu = new DB('menu');
+
+
+if(!isset($_SESSION['total'])){
+    $total = $Total->find(1);
+    $total['text']++;
+    $Total->save($total);
+    $_SESSION['total'] = 1;
+}
 ?>

@@ -1,6 +1,10 @@
 ﻿<?php
 $do = ($_GET['do'])??'title';
 include('./api/base.php');
+if(!isset($_SESSION['admin'])){
+    to('./index.php');
+    exit();
+}
 ?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -76,7 +80,7 @@ include('./api/base.php');
                 </div>
                 <div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
                     <span class="t">進站總人數 :
-                    <?=$Total->find(1)['text']?>
+                        <?=$Total->find(1)['text']?>
                     </span>
                 </div>
             </div>
@@ -89,8 +93,11 @@ include('./api/base.php');
                             <td style="width:70%;font-weight:800; border:#333 1px solid; border-radius:3px;"
                                 class="cent"><a href="?do=admin" style="color:#000; text-decoration:none;">後台管理區</a>
                             </td>
-                            <td><button onclick="document.cookie='user=';location.replace('?')"
-                                    style="width:99%; margin-right:2px; height:50px;">管理登出</button></td>
+                            <td>
+                                <button onclick="location.href='./api/logout.php'"
+                                    style="width:99%; margin-right:2px; height:50px;">管理登出
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
